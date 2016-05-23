@@ -1,0 +1,5 @@
+NameError: variable @baseLineHeight is undefined in /TMS/tempo/tempo-crm/tmsmarketplace/static/less/type.less:10:14
+9 p {
+10   margin: 0 0 @baseLineHeight / 2;
+11 }
+

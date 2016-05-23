@@ -1,0 +1,5 @@
+NameError: variable @baseLineHeight is undefined in /TMS/tempo/tempo-crm/tmsmarketplace/static/less/carousel.less:8:17
+7   position: relative;
+8   margin-bottom: @baseLineHeight;
+9   line-height: 1;
+

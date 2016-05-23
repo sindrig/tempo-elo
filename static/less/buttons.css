@@ -1,0 +1,5 @@
+NameError: .ie7-inline-block is undefined in /TMS/tempo/tempo-crm/tmsmarketplace/static/less/buttons.less:12:2
+11   display: inline-block;
+12   .ie7-inline-block();
+13   padding: 4px 12px;
+

@@ -1,0 +1,5 @@
+NameError: .clearfix is undefined in /TMS/tempo/tempo-crm/tmsmarketplace/static/less/pager.less:10:2
+9   text-align: center;
+10   .clearfix();
+11 }
+

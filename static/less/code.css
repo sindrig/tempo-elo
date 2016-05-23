@@ -1,0 +1,5 @@
+NameError: #font > #family > .monospace is undefined in /TMS/tempo/tempo-crm/tmsmarketplace/static/less/code.less:10:2
+9   padding: 0 3px 2px;
+10   #font > #family > .monospace;
+11   font-size: @baseFontSize - 2;
+

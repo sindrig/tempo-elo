@@ -1,0 +1,5 @@
+NameError: .clearfix is undefined in /TMS/tempo/tempo-crm/tmsmarketplace/static/less/thumbnails.less:12:2
+11   list-style: none;
+12   .clearfix();
+13 }
+

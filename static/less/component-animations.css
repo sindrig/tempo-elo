@@ -1,0 +1,5 @@
+NameError: .transition is undefined in /TMS/tempo/tempo-crm/tmsmarketplace/static/less/component-animations.less:8:2
+7   opacity: 0;
+8   .transition(opacity .15s linear);
+9   &.in {
+

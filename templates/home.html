@@ -1,0 +1,150 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Elo</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'delta.main.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'less/bootstrap.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'jquery-ui-1.11.4.custom/jquery-ui.min.css' %}"/>
+
+    <script src="{% static 'jquery-ui-1.11.4.custom/external/jquery/jquery.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'jquery-ui-1.11.4.custom/jquery-ui.min.js' %}"></script>
+</head>
+<body>
+    <div class="row-fluid medium-margin-top">
+        <div class="span4">
+            <div class="span12 center-text">
+                <h4 class="large-margin-right">Create Player</h4>
+                <input type="text"/>
+                <a href="/{{ game }}" id="le_save_player" class="btn small-margin-left">Create</a>
+            </div>
+
+            <div class="span12 medium-margin-top">
+                <h4 class="center-text large-margin-right">Create Match</h4>
+                <div class="span4">
+                <!-- since there is no 'range' available, hack one -->
+                {% for i in "xx" %}
+                    <select class="form-control">
+                        <option></option>
+                        {% for player in players %}
+                            <option>{{ player.username }}</option>
+                        {% endfor %}
+                    </select>
+                {% endfor %}
+                <input type="text" class="team1-score"/>
+            </div>
+            <div class="span2 center-text">
+                <img src="{% static 'imgs/vs.jpg' %}" class="small-margin-top">
+                <a href="/{{ game }}" id="le_save_match" class="tiny-margin-left medium-margin-top btn">Save</a>
+            </div>
+            <div class="span4">
+                <!-- since there is no 'range' available, hack one -->
+                {% for i in "xx" %}
+                    <select class="form-control">
+                        <option></option>
+                        {% for player in players %}
+                            <option>{{ player.username }}</option>
+                        {% endfor %}
+                    </select>
+                {% endfor %}
+                <input type="text" class="team2-score"/>
+            </div>
+            </div>
+
+            <div class="span12 medium-margin-top">
+                <h4 class="center-text">Recent Matches</h4>
+                <table class="table">
+                    <tr>
+                        <th>Team 1</th>
+                        <th>Score</th>
+                        <th>Team 2</th>
+                        <th>Date</th>
+                    </tr>
+                    {% for match in matches %}
+                        <tr>
+                            <td>{{ match.team_1_player_1.username }} & {{ match.team_1_player_2.username }}</td>
+                            <td>{{ match.team_1_score }} : {{ match.team_2_score }}</td>
+                            <td>{{ match.team_2_player_1.username }} & {{ match.team_2_player_2.username }}</td>
+                            <td>{{ match.date }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+
+        <div class="span4" style="margin-left: 100px">
+            <h4 class="center-text">Rankings</h4>
+            <table class="table">
+                <tr>
+                    <th>Player</th>
+                    <th>Points</th>
+                    <th>Wins</th>
+                    <th>Losses</th>
+                    <th>Draws</th>
+                    <th>Hot streak</th>
+                </tr>
+                {% for player in players %}
+                    <tr>
+                        <td>{{ player.username }}</td>
+                        <td>{{ player.current_points }}
+                            {% if player.current_points > player.previous_points %}
+                                <img src="{% static 'imgs/tango_go_up_thumb.png' %}" class="small-image-width">
+                             {% elif player.current_points < player.previous_points %}
+                                <img src="{% static 'imgs/red_arrow_down.png' %}" class="small-image-width-and-margin">
+                            {% endif %}
+                        </td>
+                        <td>{{ player.wins }}</td>
+                        <td>{{ player.losses }}</td>
+                        <td>{{ player.draws }}</td>
+                        <td>
+                            {% if player.win_streak > 2 %}
+                                <img src="{% static 'imgs/Fire.png' %}" class="small-image-width">
+                            {% endif %}
+{#                            <a href="/{{ game }}/delete_player/{{ player.username }}" id="delete_player"><img src="{% static 'imgs/Sign-X01-Red.png' %}" class="small-image-width float-right"></a>#}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+            <a href="/{{ game }}/reset_score" id="reset_score" class="btn float-right">Reset</a>
+        </div>
+    </div>
+</body>
+
+<script type="text/javascript">
+    $('#le_save_match').on('click', function () {
+        var url = $(this).attr('href');
+        var link = '/create_match/';
+        var team1 = $($($(this).parent().siblings()[1]).children());
+        var team2 = $($($(this).parent().siblings()[2]).children());
+
+        var team1_player1 = $(team1[0]).val();
+        var team1_player2 = $(team1[1]).val();
+        var score1 = $(team1[2]).val();
+
+        var team2_player1 = $(team2[0]).val();
+        var team2_player2 = $(team2[1]).val();
+        var score2 = $(team2[2]).val();
+
+        if (score1 == '' || score2 == '') {
+            return false;
+        }
+
+        var href = url + link + team1_player1 + '_' + team1_player2 + '_' + team2_player1 + '_' + team2_player2 + '_' + score1 + '_' + score2;
+        $(this).attr('href', href);
+    });
+
+    $('#le_save_player').on('click', function () {
+        var url = $(this).attr('href');
+        var link = '/create_player/';
+        var username = $($(this).siblings()[1]).val();
+
+        var href = url + link + username;
+        $(this).attr('href', href);
+    });
+</script>
+
+</html>

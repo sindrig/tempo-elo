@@ -1,0 +1,65 @@
+.center-text
+{
+    text-align: center;
+}
+
+.small-margin-top
+{
+    margin-top: 20px;
+}
+
+.medium-margin-top
+{
+    margin-top: 50px;
+}
+
+.large-margin-right
+{
+    margin-right: 90px;
+}
+
+.tiny-margin-left
+{
+    margin-left: 3px;
+}
+
+.small-margin-left
+{
+    margin-left: 10px;
+}
+
+.save-button-position
+{
+    position: absolute;
+    bottom: -25%;
+    left: 38%;
+}
+
+.team1-score
+{
+    width: 50px;
+    float: right;
+    text-align: right;
+}
+
+.team2-score
+{
+    width: 50px;
+    float: left;
+}
+
+.small-image-width
+{
+    width: 20px;
+}
+
+.small-image-width-and-margin
+{
+    width: 14px;
+    margin-left: 3px;
+}
+
+.float-right
+{
+    float: right;
+}

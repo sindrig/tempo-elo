@@ -1,0 +1,5 @@
+NameError: variable @inputHeight is undefined in /TMS/tempo/tempo-crm/tmsmarketplace/static/less/mixins.less:157:14
+156   width: 100%;
+157   min-height: @inputHeight; // Make inputs at least the height of their button counterpart (base line-height + padding + border)
+158   .box-sizing(border-box); // Makes inputs behave like true block-level elements
+

@@ -1,0 +1,5 @@
+NameError: variable @tableBackground is undefined in /TMS/tempo/tempo-crm/tmsmarketplace/static/less/tables.less:11:20
+10   max-width: 100%;
+11   background-color: @tableBackground;
+12   border-collapse: collapse;
+

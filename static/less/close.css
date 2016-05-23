@@ -1,0 +1,5 @@
+NameError: .opacity is undefined in /TMS/tempo/tempo-crm/tmsmarketplace/static/less/close.less:13:2
+12   text-shadow: 0 1px 0 rgba(255,255,255,1);
+13   .opacity(20);
+14   &:hover,
+
