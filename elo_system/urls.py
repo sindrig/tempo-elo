@@ -22,9 +22,7 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', RedirectView.as_view(url='/fifa')),
-    url(r'^fifa/', include('fifa_elo.urls', namespace='fifa_elo')),
-    url(r'^foos/', include('foos_elo.urls', namespace='foos_elo')),
-    url(r'^rocketl/', include('rocket_elo.urls', namespace='rocketl_elo')),
+    url(r'^(?P<ecosystem>\w+)/', include('elo.urls', namespace='elo')),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

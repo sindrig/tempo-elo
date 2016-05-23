@@ -38,9 +38,10 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'fifa_elo',
-    'foos_elo',
-    'rocket_elo',
+    'fifa_elo',  # TODO: remove
+    'foos_elo',  # TODO: remove
+    'rocket_elo',  # TODO: remove
+    'elo',
 )
 
 MIDDLEWARE_CLASSES = (
