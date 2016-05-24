@@ -1,14 +1,16 @@
-from django.shortcuts import render, redirect
-from decimal import Decimal
 from datetime import date
+from decimal import Decimal
 
-from .models import Player, Match
+from django.shortcuts import redirect, render
 
+from .models import Match, Player
+from .utils import validate_ecosystem_exists
 
 K = 40
 
 
 def home(request, ecosystem):
+    validate_ecosystem_exists(ecosystem)
     players = Player.objects.filter(
         ecosystem=ecosystem
     ).order_by('-current_points')
@@ -24,6 +26,7 @@ def home(request, ecosystem):
 
 
 def create_player(request, ecosystem, username):
+    validate_ecosystem_exists(ecosystem)
     try:
         Player.objects.get(username=username, ecosystem=ecosystem)
     except Player.DoesNotExist:
@@ -48,6 +51,7 @@ def create_player(request, ecosystem, username):
 
 def create_match(request, ecosystem, player1, player2, player3, player4,
                  score1, score2):
+    validate_ecosystem_exists(ecosystem)
     score1 = int(score1)
     score2 = int(score2)
 
@@ -125,6 +129,7 @@ def create_match(request, ecosystem, player1, player2, player3, player4,
 
 
 def delete_player(request, ecosystem, username):
+    validate_ecosystem_exists(ecosystem)
     player = Player.objects.get(
         username=username,
         ecosystem=ecosystem
@@ -135,6 +140,7 @@ def delete_player(request, ecosystem, username):
 
 
 def reset_score(request, ecosystem):
+    validate_ecosystem_exists(ecosystem)
     players = Player.objects.filter(ecosystem=ecosystem)
     for player in players:
         player.current_points = 1600
