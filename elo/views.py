@@ -139,22 +139,6 @@ def delete_player(request, ecosystem, username):
     return redirect_to_ecosystem_home(ecosystem)
 
 
-def reset_score(request, ecosystem):
-    validate_ecosystem_exists(ecosystem)
-    players = Player.objects.filter(ecosystem=ecosystem)
-    for player in players:
-        player.current_points = 1600
-        player.previous_points = 1600
-        player.wins = 0
-        player.losses = 0
-        player.draws = 0
-        player.win_streak = 0
-
-        player.save()
-
-    return redirect_to_ecosystem_home(ecosystem)
-
-
 def redirect_to_ecosystem_home(ecosystem):
     return redirect('/%s' % ecosystem)
 
